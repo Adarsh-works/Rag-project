@@ -6,7 +6,6 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -66,13 +65,6 @@ const Signup = () => {
             onChange={handleChange}
           />
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            className="w-full px-4 py-3 rounded-xl border mb-6 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            onChange={handleChange}
-          />
 
           <button
             className="w-full bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 hover:scale-105 transition duration-300"
