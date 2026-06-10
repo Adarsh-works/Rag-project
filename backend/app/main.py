@@ -16,3 +16,9 @@ def home():
     return {
         "message": "Server Running"
     }
+
+from app.routers import auth_router
+
+app.include_router(
+    auth_router.router
+)
