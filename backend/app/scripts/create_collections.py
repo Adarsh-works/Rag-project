@@ -13,5 +13,6 @@ try:
             distance=Distance.COSINE
         )
     )
+    print("Collections Created Sucessfully")
 except UnexpectedResponse:
     print("Collection already exists")
