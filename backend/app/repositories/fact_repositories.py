@@ -7,6 +7,7 @@ class FactRepository:
     @staticmethod
     async def create_fact(fact_data):
 
+        # pyrefly: ignore [deprecated]
         fact_data["created_at"] = datetime.utcnow()
 
         result = await db.facts.insert_one(fact_data)
@@ -18,7 +19,11 @@ class FactRepository:
 
         facts = await db.facts.find().to_list(length=100)
 
+        for fact in facts:
+            fact["_id"] = str(fact["_id"])
+
         return facts
+
 
     @staticmethod
     async def get_fact_by_id(fact_id):
@@ -26,7 +31,8 @@ class FactRepository:
         fact = await db.facts.find_one(
             {"_id": ObjectId(fact_id)}
         )
-
+        if fact:
+            fact["_id"] = str(fact["_id"])
         return fact
 
     @staticmethod
