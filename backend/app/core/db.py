@@ -1,15 +1,11 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from dotenv import load_dotenv
-import os
 import certifi
+from app.core.config import settings
 
-load_dotenv()
+client = AsyncIOMotorClient(
+    settings.MONGO_URI,
+    tlsCAFile=certifi.where()
+)
 
-MONGO_URI = os.getenv("MONGO_URI")
-DATABASE_NAME = os.getenv("DATABASE_NAME")
-
-client = AsyncIOMotorClient(MONGO_URI, tlsCAFile=certifi.where())
-
-db = client["DATABASE_NAME"]
-
+db = client[settings.DATABASE_NAME]
 
