@@ -3,7 +3,7 @@ from fastapi import (
     HTTPException
 )
 
-from app.schemas.user_schema import UserCreate
+from app.schemas.auth_schema import userregister
 from app.schemas.auth_schema import LoginRequest
 
 from app.repositories.user_repositories import UserRepository
@@ -20,7 +20,9 @@ router = APIRouter(
 )
 
 @router.post("/register")
-async def register(user: UserCreate):
+async def register(user: userregister):
+
+    
 
     existing_user = await UserRepository.get_by_email(
         user.email
@@ -34,7 +36,7 @@ async def register(user: UserCreate):
 
     user_data = user.model_dump()
 
-    user_data["password"] = hash_password(
+    user_data["password"] =hash_password(
         user.password
     )
 
