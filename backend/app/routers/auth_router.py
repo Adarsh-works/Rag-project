@@ -22,6 +22,8 @@ router = APIRouter(
 @router.post("/register")
 async def register(user: userregister):
 
+    
+
     existing_user = await UserRepository.get_by_email(
         user.email
     )
@@ -34,7 +36,7 @@ async def register(user: userregister):
 
     user_data = user.model_dump()
 
-    user_data["password"] = hash_password(
+    user_data["password"] =hash_password(
         user.password
     )
 

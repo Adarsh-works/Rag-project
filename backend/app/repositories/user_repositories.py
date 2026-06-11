@@ -6,6 +6,12 @@ class UserRepository:
     async def create_user(user_data):
         result = await db.users.insert_one(user_data)
         return str(result.inserted_id)
+    
+    @staticmethod
+    async def get_by_email(email: str):
+        return await db.users.find_one(
+            {"email": email}
+        )
 
     @staticmethod
     async def get_all_users():
